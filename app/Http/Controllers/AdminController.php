@@ -8,6 +8,8 @@ use App\Http\Requests;
 use App\User;
 use Auth;
 use Session;
+use Illuminate\Support\Facades\Hash;
+
 class AdminController extends Controller
 {
     //
@@ -25,18 +27,32 @@ class AdminController extends Controller
 		$user_id = Auth::user()->id;
     	$user    = User::find($user_id);
 
-    	if ( ( $user->password == bcrypt($request->input('oldpassword')) ) && ($request->input('oldpassword')!= '') ) {
-    		# code...
-    	    $user->password = bcrypt($request->input('newpassword'));
-    	    $user->name     = $request->input('name');
-    	    $user->phone    = $request->input('phone');
-    	    $user->email    = $request->input('email');
+        $this->validate($request, [
+            'name'                 =>'required| max:18',
+            'phone'                =>'required|numeric|max:15',
+            'email'                =>'email|required|exists:users',
+            'oldpassword'          =>'required|min:4',
+            'newpassword'          =>'required|min:4',
+            'confirmpassword'      =>'required|same:newpassword'
+        ]);
 
-    	    $user->save();
-    	    $message = "profile anda berhasil diubah";
+        
+        
 
-    	    return redirect()->route('admin.profile')->with(['success_message'=> $message]);
-    	}
+        if (Hash::check($request->oldpassword, $user->password)) {
+
+            $user->name     = $request->input('name');
+            $user->phone    = $request->input('phone');
+            $user->email    = $request->input('email');
+
+            $user->password = Hash::make($request->newpassword);
+        
+            $user->save();
+            $message = "profile anda berhasil diubah";
+
+            return redirect()->route('admin.profile')->with(['success_message'=> $message]);
+        }
+
     	else{
     		$message= 'Pasword lama anda salah';
     		return redirect()->route('admin.profile')->with(['error_message'=> $message]);
@@ -44,4 +60,6 @@ class AdminController extends Controller
 
 
     }
+
+
 }

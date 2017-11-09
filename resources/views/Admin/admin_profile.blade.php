@@ -62,7 +62,7 @@
                                 <div class="form-group">
                                     <label for="example-email" class="col-md-12">Email</label>
                                     <div class="col-md-12">
-                                        <input type="email" value="{{$user->email}}" class="form-control form-control-line" name="example-email" id="example-email" id="email" name="email"> </div>
+                                        <input type="email" value="{{$user->email}}" class="form-control form-control-line"  id="email" name="email"> </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-12">old Password</label>
@@ -73,7 +73,13 @@
                                  <div class="form-group">
                                     <label class="col-md-12">new Password</label>
                                     <div class="col-md-12">
-                                        <input type="password" placeholder="password" class="form-control form-control-line" id="newpassword" name="newpassword"> </div>
+                                        <input type="password" placeholder="new password" class="form-control form-control-line" id="newpassword" name="newpassword"> </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-12">confirm new Password</label>
+                                    <div class="col-md-12">
+                                        <input type="password" placeholder="confirm new password" class="form-control form-control-line" id="confirmpassword" name="confirmpassword"> </div>
                                 </div>
 
                                 <div class="form-group">
