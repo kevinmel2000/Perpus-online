@@ -11,6 +11,7 @@
 	<link rel="stylesheet" href="{{ URL::to('src/css/animate.css') }}">
 	<link rel="stylesheet" href="{{ URL::to('src/css/style.css') }}">
 	<link rel="stylesheet" href="{{ URL::to('src/css/colors/blue-dark.css') }}" id="theme">
+	<link rel="stylesheet" href="{{ URL::to('src/css_kecil/main.css')}}"
 	@yield('styles')
 </head>
 <body>

@@ -73,4 +73,19 @@ Route::group(['prefix'=>'admin','middleware'=>'admin'],function(){
 		'as' =>  'admin.update'
 	]);
 
+	Route::get('/create_book',[
+		'uses' => 'AdminController@getCreateBook',
+		'as' => 'admin.create'
+	]);
+
+	Route::post('/create_book',[
+		'uses' => 'AdminController@postCreateBook',
+		'as' => 'admin.create'
+	]);
+
+	Route::get('/delete-book/{book_id}',[
+		'uses'=> 'AdminController@getDeleteBook',
+		'as'=> 'book.delete'
+	]);
+
 });

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\User;
+use App\Buku;
 use Auth;
 use Session;
 use Illuminate\Support\Facades\Hash;
@@ -20,16 +21,19 @@ class AdminController extends Controller
     }
 
     public function getBookTables(){
-    	return view('Admin.admin_buku');
+        $databuku = Buku::all();
+    	return view('Admin.admin_buku')->with(['databuku'=> $databuku]);
     }
 
     public function postUpdateAdmin(Request $request){
+
+        
 		$user_id = Auth::user()->id;
     	$user    = User::find($user_id);
 
         $this->validate($request, [
             'name'                 =>'required| max:18',
-            'phone'                =>'required|numeric|max:15',
+            'phone'                =>'required|numeric',
             'email'                =>'email|required|exists:users',
             'oldpassword'          =>'required|min:4',
             'newpassword'          =>'required|min:4',
@@ -37,8 +41,6 @@ class AdminController extends Controller
         ]);
 
         
-        
-
         if (Hash::check($request->oldpassword, $user->password)) {
 
             $user->name     = $request->input('name');
@@ -61,5 +63,34 @@ class AdminController extends Controller
 
     }
 
+
+    public function getCreateBook(){
+        return view('admin.tambahbuku');
+    }
+
+
+    public function postCreateBook(Request $request){
+        $this->validate($request, [
+            'judul'                 =>'required|min:4| max:18',
+            'gambar'                =>'required|url',
+        ]);
+
+        $buku = new Buku();
+        $buku->judul = $request['judul'];
+        $buku->gambar = $request['gambar'];
+        $buku->status = 1;
+
+        $buku->save();
+        
+        return redirect()->route('admin.book_tables');
+    }
+
+    public function getDeleteBook($book_id)
+   {
+    $buku = Buku::where('id', $book_id)->first();
+    $buku->delete();
+    $message = "Buku berhasil di hapus";
+    return redirect()->route('admin.book_tables')->with(['success_message'=> $message]);
+   }
 
 }

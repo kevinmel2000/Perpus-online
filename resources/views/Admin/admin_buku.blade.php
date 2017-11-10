@@ -21,7 +21,7 @@
                       
                     </div>
                     <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12"> 
-                         <a href="#" target="_blank" class="btn btn-success pull-right m-l-20 btn-rounded btn-outline hidden-xs hidden-sm waves-effect waves-light"><i class="fa fa-plus-circle" aria-hidden="true"></i> Tambah Buku</a>
+                         <a href="{{route('admin.create')}}" target="tambah_buku" class="btn btn-success pull-right m-l-20 btn-rounded btn-outline hidden-xs hidden-sm waves-effect waves-light"><i class="fa fa-plus-circle" aria-hidden="true"></i> Tambah Buku</a>
                         <ol class="breadcrumb">
                             <li><a href="#">Dashboard</a></li>
                             <li class="active">Tabel Buku</li>
@@ -48,14 +48,24 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>Heri poter</td>
-                                            <td>Hmm</td>
-                                            <td>Tersedia</td>
-                                            <td><button class="btn btn-primary  m-l-20 btn-rounded btn-outline hidden-xs hidden-sm waves-effect waves-light">Edit</button></td>
-                                            <td><button class="btn btn-danger  m-l-20 btn-rounded btn-outline hidden-xs hidden-sm waves-effect waves-light">Hapus</button></td>
-                                        </tr>
+                                        @foreach($databuku as $a)
+                                            <tr>
+                                                <td>{{$a->id}}</td>
+                                                <td>{{$a->judul}}</td>
+                                                <td><img src="{{$a->gambar}}" class="gambar"></td>
+                                                <td>
+                                                    @if($a->status == 1)
+                                                       Tersedia
+                                                    @else
+                                                       Tidak tersedia
+                                                    @endif
+                                                </td>
+                                                <td><button class="btn btn-primary  m-l-20 btn-rounded btn-outline hidden-xs hidden-sm waves-effect waves-light">Edit</button></td>
+                                                <td>
+                                                    <a href="{{ route('book.delete' ,['book_id' => $a->id]) }}" class="btn btn-danger  m-l-20 btn-rounded btn-outline hidden-xs hidden-sm waves-effect waves-light" role="button">Hapus</a>
+                                                </td>
+                                            </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>
