@@ -88,4 +88,14 @@ Route::group(['prefix'=>'admin','middleware'=>'admin'],function(){
 		'as'=> 'book.delete'
 	]);
 
+	Route::get('/edit/{book_id}',[
+		'uses' => 'AdminController@getEditBook',
+		'as' => 'book.edit'
+	]);
+
+	Route::post('/edit/{book_id}',[
+		'uses' => 'AdminController@postEditBook',
+		'as' => 'book.edit'
+	]);
+
 });

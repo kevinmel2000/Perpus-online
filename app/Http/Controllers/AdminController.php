@@ -71,7 +71,7 @@ class AdminController extends Controller
 
     public function postCreateBook(Request $request){
         $this->validate($request, [
-            'judul'                 =>'required|min:4| max:18',
+            'judul'                 =>'required|min:4| max:80',
             'gambar'                =>'required|url',
         ]);
 
@@ -91,6 +91,28 @@ class AdminController extends Controller
     $buku->delete();
     $message = "Buku berhasil di hapus";
     return redirect()->route('admin.book_tables')->with(['success_message'=> $message]);
+   }
+
+   public function getEditBook($book_id)
+   {
+    $buku = Buku::find($book_id);
+    $message= 'Buku anda berhasil di update';
+
+    return view('admin.editbuku')->with(['buku'=>$buku]);
+   }
+
+   public function postEditBook($book_id, Request $request){
+    $buku= Buku::find($book_id);
+     $this->validate($request, [
+            'judul'                 =>'required|min:4| max:80',
+            'gambar'                =>'required|url'
+        ]);
+     $buku->judul = $request['judul'];
+     $buku->gambar = $request['gambar'];
+     $buku->save();
+     $message = 'buku anda berhasil di edit';
+
+     return redirect()->route('admin.book_tables')->with(['success_message' => $message]);
    }
 
 }

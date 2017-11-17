@@ -18,7 +18,7 @@
                 <div class="row bg-title">
                     <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
                         <h4 class="page-title">Tabel Buku</h4> 
-                      
+                        @include('Partials.notif') 
                     </div>
                     <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12"> 
                          <a href="{{route('admin.create')}}" target="tambah_buku" class="btn btn-success pull-right m-l-20 btn-rounded btn-outline hidden-xs hidden-sm waves-effect waves-light"><i class="fa fa-plus-circle" aria-hidden="true"></i> Tambah Buku</a>
@@ -60,7 +60,7 @@
                                                        Tidak tersedia
                                                     @endif
                                                 </td>
-                                                <td><button class="btn btn-primary  m-l-20 btn-rounded btn-outline hidden-xs hidden-sm waves-effect waves-light">Edit</button></td>
+                                                <td><a href="{{ route('book.edit' ,['book_id' => $a->id]) }}" class="btn btn-primary  m-l-20 btn-rounded btn-outline hidden-xs hidden-sm waves-effect waves-light" role="button">Edit</a>
                                                 <td>
                                                     <a href="{{ route('book.delete' ,['book_id' => $a->id]) }}" class="btn btn-danger  m-l-20 btn-rounded btn-outline hidden-xs hidden-sm waves-effect waves-light" role="button">Hapus</a>
                                                 </td>
