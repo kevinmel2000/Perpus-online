@@ -24,13 +24,10 @@
             <div class="sidebar-nav navbar-collapse slimscrollsidebar">
                 <ul class="nav" id="side-menu">
                     <li>
-                        <a href="{{route('admin.profile')}}" class="waves-effect"><i class="fa fa-user fa-fw" aria-hidden="true"></i><span class="hide-menu">Profile</span></a>
+                        <a href="{{route('user.profile')}}" class="waves-effect"><i class="fa fa-user fa-fw" aria-hidden="true"></i><span class="hide-menu">Profile</span></a>
                     </li>
                     <li>
-                        <a href="{{route('admin.book_tables')}}" class="waves-effect"><i class="fa fa-table fa-fw" aria-hidden="true"></i><span class="hide-menu">Dafar Buku</span></a>
-                    </li>
-                     <li>
-                        <a href="{{route('user.view')}}" class="waves-effect"><i class="fa fa-users fa-fw" aria-hidden="true"></i><span class="hide-menu">Dafar User</span></a>
+                        <a href="{{route('user.buku')}}" class="waves-effect"><i class="fa fa-table fa-fw" aria-hidden="true"></i><span class="hide-menu">Dafar Buku</span></a>
                     </li>
                 </ul>
             </div>

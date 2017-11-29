@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\DB;
 use App\Http\Requests;
 use App\User;
 use App\Buku;
+use App\denda;
+use App\Transaksi;
 use Auth;
 use Session;
 use Illuminate\Support\Facades\Hash;
@@ -113,6 +115,29 @@ class AdminController extends Controller
      $message = 'buku anda berhasil di edit';
 
      return redirect()->route('admin.book_tables')->with(['success_message' => $message]);
+   }
+
+   public function getLihatUser(){
+    $user = User::all();
+        return view('admin.daftaruser')->with(['user'=> $user]);
+   }
+
+   public function modalDenda(Request $request){
+        $id = $request['ID'];
+        $user = User::find($id);
+        $nama= $user->nama;
+
+        return response()->json(['message'=> $nama]);
+   }
+
+   public function getuserDetail($user_id){
+     $transaksi = DB::table('transaksis')->where('id_peminjam',$user_id)->get();
+     $denda =DB::table('dendas')->where('id_user',$user_id)->get();
+     $id = $user_id;
+     $buku = Buku::all();
+     $user= User::find($user_id);
+
+     return view('admin.detail_user')->with(['transaksi'=>$transaksi, 'denda'=> $denda, 'id'=>$id, 'buku'=> $buku, 'user'=>$user]);
    }
 
 }

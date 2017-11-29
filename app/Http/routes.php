@@ -54,6 +54,30 @@ Route::group(['prefix'=>'user','middleware'=>'user'],function(){
 	'as'=> 'user.profile'
 	]);
 
+	Route::post('/update_profile',[
+		'uses'=> 'UserController@postUpdateProfile',
+		'as' => 'user.update'
+	]);
+
+	Route::get('/buku',[
+		'uses' => 'UserController@getBuku',
+		'as' => 'user.buku'
+	]);
+
+
+	Route::get('/pinjam/{book_id}',[
+		'uses' => 'UserController@getPinjamBuku',
+		'as' => 'user.pinjam'
+	]);
+
+	Route::post('/pinjam/{book_id}',[
+		'uses' => 'UserController@postPinjamBuku',
+		'as' => 'user.pinjam'
+	]);
+
+
+
+
 });
 
 Route::group(['prefix'=>'admin','middleware'=>'admin'],function(){
@@ -96,6 +120,21 @@ Route::group(['prefix'=>'admin','middleware'=>'admin'],function(){
 	Route::post('/edit/{book_id}',[
 		'uses' => 'AdminController@postEditBook',
 		'as' => 'book.edit'
+	]);
+
+	Route::get('/daftar_user',[
+		'uses' => 'AdminController@getLihatUser',
+		'as' => 'user.view'
+	]);
+
+	Route::get('/daftar_denda',[
+		'uses' => ' AdminController@modalDenda',
+		'as' => 'user.denda'
+	]);
+
+	Route::get('/detail/{user_id}',[
+		'uses' => 'AdminController@getuserDetail',
+		'as' => 'user.detail'
 	]);
 
 });

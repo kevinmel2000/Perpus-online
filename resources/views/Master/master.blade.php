@@ -33,5 +33,6 @@
 <script type="text/javascript" src="{{URL::to('src/js/jquery.slimscroll.js')}}"></script>
 <script type="text/javascript" src="{{URL::to('src/js/waves.js')}}"></script>
 <script type="text/javascript" src="{{URL::to('src/js/custom.min.js')}}"></script>
+<script type="text/javascript" src="{{URL::to('src/js/modal.js')}}"></script>
 </body>
 </html>
