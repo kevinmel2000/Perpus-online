@@ -12,6 +12,7 @@ use App\Transaksi;
 use Auth;
 use Session;
 use Illuminate\Support\Facades\Hash;
+use Carbon\Carbon;
 
 class AdminController extends Controller
 {
@@ -138,6 +139,19 @@ class AdminController extends Controller
      $user= User::find($user_id);
 
      return view('admin.detail_user')->with(['transaksi'=>$transaksi, 'denda'=> $denda, 'id'=>$id, 'buku'=> $buku, 'user'=>$user]);
+   }
+
+   public function postTransaksiSelesai($id_transaksi){
+    $transaksi = Transaksi::find($id_transaksi);
+    $current_time    = Carbon::now();
+    $transaksi->tgl_pengembalian = $current_time;
+    $transaksi->status = 1;
+    $id_buku = $transaksi->id_buku;
+    $buku= Buku::find($id_buku);
+    $buku->status = 1;
+    $buku->save();
+    $transaksi->save();
+    return redirect()->back();
    }
 
 }

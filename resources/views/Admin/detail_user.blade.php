@@ -24,7 +24,8 @@
                       
                         <ol class="breadcrumb">
                             <li><a href="#">Dashboard</a></li>
-                            <li class="active">Tabel User</li>
+                            <li><a href="#">Daftar user</a></li>
+                            <li class="active">Detail User</li>
                         </ol>
                     </div>
                     <!-- /.col-lg-12 -->
@@ -73,6 +74,7 @@
                                             <th>Tanggal Peminjaman</th>
                                             <th>Tanggal Pengembalian </th>
                                             <th>Status </th>
+                                            <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -93,6 +95,15 @@
                                                   @else
                                                   Transaksi Belum Selesai
                                                 @endif
+                                               </td>
+                                               <td> 
+                                                  @if($t->status==0)
+                                                    <form action ="{{ route('admin.transaksi_selesai' ,['transaksi_id' => $t->id] )}}" method="post">
+                                                   <button class="btn btn-success pull-right m-l-20 btn-rounded btn-outline hidden-xs hidden-sm waves-effect waves-light" type="submit">selesai</button>
+                                                   {{ csrf_field() }}
+
+                                                @endif
+                                                </form>
                                                </td>
 
                                            </tr>

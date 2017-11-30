@@ -141,4 +141,9 @@ Route::group(['prefix'=>'admin','middleware'=>'admin'],function(){
 		'as' => 'user.detail'
 	]);
 
+	Route::post('/transaksi_selesai/{id_transaksi}',[
+		'uses' => 'AdminController@postTransaksiSelesai',
+		'as' => 'admin.transaksi_selesai'
+	]);
+
 });
