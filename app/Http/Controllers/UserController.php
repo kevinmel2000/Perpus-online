@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Carbon\Carbon;
-
+use Illuminate\Support\Facades\DB;
 use App\Http\Requests;
 use App\User;
 use App\Buku;
@@ -149,7 +149,19 @@ class UserController extends Controller
      $transaksi->id_peminjam= $user_id;
      $transaksi->status = $status;
 
+     $buku->status = 0;
+
+     $buku->save();
      $transaksi->save();
      return redirect()->route('user.buku');
+   }
+
+   public function getTransaksi(){
+     $user_id   = Auth::user()->id;
+     $transaksi = DB::table('transaksis')->where('id_peminjam',$user_id)->get();
+     $buku      = Buku::all();
+     $user      = User::find($user_id);
+
+     return view('User.transaksi_user')->with(['transaksi'=>$transaksi,'buku'=> $buku]);
    }
 }

@@ -75,6 +75,10 @@ Route::group(['prefix'=>'user','middleware'=>'user'],function(){
 		'as' => 'user.pinjam'
 	]);
 
+	Route::get('/transaksi',[
+		'uses' => 'UserController@getTransaksi',
+		'as'   => 'user.transaksi'
+	]);
 
 
 

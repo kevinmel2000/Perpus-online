@@ -29,6 +29,9 @@
                     <li>
                         <a href="{{route('user.buku')}}" class="waves-effect"><i class="fa fa-table fa-fw" aria-hidden="true"></i><span class="hide-menu">Dafar Buku</span></a>
                     </li>
+                    <li>
+                        <a href="{{route('user.transaksi')}}" class="waves-effect"><i class="fa fa-history fa-fw" aria-hidden="true"></i><span class="hide-menu"> Transaksi</span></a>
+                    </li>
                 </ul>
             </div>
         </div>
