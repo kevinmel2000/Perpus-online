@@ -73,6 +73,7 @@
                                             <th>Judul Buku</th>
                                             <th>Tanggal Peminjaman</th>
                                             <th>Tanggal Pengembalian </th>
+                                            <th>lenght</th>
                                             <th>Status </th>
                                             <th></th>
                                         </tr>
@@ -89,6 +90,7 @@
                                                @endforeach
                                                <td>{{$t->tgl_peminjaman}}</td>
                                                <td>{{$t->tgl_pengembalian}}</td>
+                                               <td>{{$t->length}}</td>
                                                <td>
                                                   @if($t->status==1)
                                                   Transaksi Selesai

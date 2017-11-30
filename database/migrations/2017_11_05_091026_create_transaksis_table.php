@@ -19,6 +19,7 @@ class CreateTransaksisTable extends Migration
              $table->integer('status');
              $table->integer('id_buku');
              $table->integer('id_peminjam');
+             $table->integer('length');
         });
     }
 

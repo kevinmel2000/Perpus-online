@@ -12,20 +12,20 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
 
-      	 /*DB::table('users')->insert([
+      	 DB::table('users')->insert([
             'name' => 'admin1',
             'email' => 'admin@email.com',
             'password' => bcrypt('1234'),
             'type' => 'admin',
             'phone'=>'088989999',
             'imagePath'=>'https://scontent.fplm1-1.fna.fbcdn.net/v/t31.0-8/fr/cp0/e15/q65/22791726_1952306635032348_3694174331524716402_o.jpg?efg=eyJpIjoidCJ9&oh=775fe73cb15bd27b39864c529aac184b&oe=5AA9D5DC'
-        ]);*/
+        ]);
 
-      /*DB::table('dendas')->insert([
+      DB::table('dendas')->insert([
         'id_buku' => '5',
         'id_user'=>'2',
         'jumlah_hari'=> '3'
-      ]);*/
+      ]);
 
       DB::table('transaksis')->insert([
         'tgl_peminjaman' => '12-januari-2010',

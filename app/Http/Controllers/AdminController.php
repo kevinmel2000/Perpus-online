@@ -150,7 +150,25 @@ class AdminController extends Controller
     $buku= Buku::find($id_buku);
     $buku->status = 1;
     $buku->save();
+    $start = $transaksi->tgl_peminjaman;
+
+   
+    $date = Carbon::parse($start);
+    $now = Carbon::now();
+
+    $diff = $date->diffInDays($now);
+
+    $transaksi->length= $diff;
     $transaksi->save();
+
+    if ($diff>3) {
+        # code...
+        $denda= New denda();
+        $denda->id_buku = $id_buku;
+        $denda->id_user = $transaksi->id_peminjam;
+        $denda->jumlah_hari = $diff-3;
+        $denda->save();
+    }
     return redirect()->back();
    }
 
